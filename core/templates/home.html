@@ -1,0 +1,301 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block page_name %} 
+{% endblock page_name %} 
+{% block content %} 
+{% include '_events_modal_warning.html' %} 
+{% include '_events_initial_message.html' %}
+
+<p class="text-center">
+  <b>
+    A ocorrência envolveu um paciente?
+    <input
+      class="form-check-input"
+      type="radio"
+      name="gridRadios"
+      id="patient_yes"
+      value="yes"
+    />
+    Sim
+    <input
+      class="form-check-input"
+      type="radio"
+      name="gridRadios"
+      id="patient_no"
+      value="no"
+    />
+    Não
+  </b>
+</p>
+
+
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-primary mb-4">
+      Ficha de Notificação de Eventos
+    </h5>
+
+    <!-- Floating Labels Form -->
+    <form class="row g-3">
+      <!-- Seção de Informações da Notificação -->
+
+      <!-- Data da Notificação (somente leitura) -->
+      <div class="col-md-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control bg-light"
+            id="floatingNotificationDate"
+            placeholder="Data da Notificação"
+            value="{{ current_date }}"
+            readonly
+          />
+          <label for="floatingNotificationDate"
+            ><i class="bi bi-calendar3"></i> Data da Notificação</label
+          >
+        </div>
+      </div>
+
+      <!-- Seção de Informações do Paciente -->
+      <hr />
+
+      <!-- Nome do Paciente -->
+      <div class="col-md-8">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingPatientName"
+            placeholder="Nome do Paciente"
+          />
+          <label for="floatingPatientName"
+            ><i class="bi bi-person"></i> Nome do Paciente</label
+          >
+        </div>
+      </div>
+
+      <!-- Data de Nascimento -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingBirthDate"
+            placeholder="Data de Nascimento"
+          />
+          <label for="floatingBirthDate"
+            ><i class="bi bi-calendar3"></i> Data de Nascimento</label
+          >
+        </div>
+      </div>
+
+      <!-- Atendimento -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingAttendance"
+            placeholder="Atendimento"
+          />
+          <label for="floatingAttendance"
+            ><i class="bi bi-hospital"></i> Atendimento</label
+          >
+        </div>
+      </div>
+
+      <!-- Registro -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingRecord"
+            placeholder="Registro"
+          />
+          <label for="floatingRecord"
+            ><i class="bi bi-journal"></i> Registro</label
+          >
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingInternmentDate"
+            placeholder="Data de Internamento"
+          />
+          <label for="floatingInternmentDate"
+            ><i class="bi bi-calendar2-plus"></i> Data de Internamento</label
+          >
+        </div>
+      </div>
+
+      <!-- Seção de Dados da Ocorrência -->
+      <hr />
+
+      <!-- Data de Internamento -->
+
+      <!-- Data da Ocorrência -->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingOccurrenceDate"
+            placeholder="Data da Ocorrência"
+          />
+          <label for="floatingOccurrenceDate"
+            ><i class="bi bi-calendar-event"></i> Data da Ocorrência</label
+          >
+        </div>
+      </div>
+
+      <!-- Hora da Ocorrência -->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input
+            type="time"
+            class="form-control"
+            id="floatingOccurrenceTime"
+            placeholder="Hora da Ocorrência"
+          />
+          <label for="floatingOccurrenceTime"
+            ><i class="bi bi-clock"></i> Hora da Ocorrência</label
+          >
+        </div>
+      </div>
+
+      <!-- Seção de Setores Envolvidos -->
+      <hr />
+
+      <!-- Setor Notificante -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingReportingSector"
+            aria-label="Setor Notificante"
+          >
+            {% for sector in reporting_sectors %}
+            <option value="{{ sector.id }}">{{ sector.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingReportingSector"
+            ><i class="bi bi-building"></i> Setor Notificante</label
+          >
+        </div>
+      </div>
+
+      <!-- Setor Notificado -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingNotifiedSector"
+            aria-label="Setor Notificado"
+          >
+            {% for sector in notified_sectors %}
+            <option value="{{ sector.id }}">{{ sector.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingNotifiedSector"
+            ><i class="bi bi-building"></i> Setor Notificado</label
+          >
+        </div>
+      </div>
+
+      <!-- Botões de ação -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-send"></i> Enviar Notificação
+        </button>
+        <button type="reset" class="btn btn-secondary">
+          <i class="bi bi-eraser"></i> Limpar
+        </button>
+      </div>
+    </form>
+    <!-- End floating Labels Form -->
+  </div>
+</div>
+
+
+{% include '_events_end_message.html' %}
+
+
+<div class="card">
+  <div class="card-body">
+    <!-- Floating Labels Form -->
+    <form class="row g-3">
+
+      <!-- Classificação da Ocorrência -->
+      <div class="col-md-4">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingReportingSector"
+            aria-label="Classificação do incidente"
+          >
+            {% for incident in incidents %}
+            <option value="{{ incident.id }}">{{ incident.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingReportingSector"
+            ><i class="bi bi-building"></i>Classificação do incidente</label
+          >
+        </div>
+      </div>
+
+      <!-- Setor Notificado -->
+      <div class="col-md-4">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingNotifiedSector"
+            aria-label="Classificação da ocorrência"
+          >
+            {% for ocurrence in ocurrences %}
+            <option value="{{ ocurrence.id }}">{{ ocurrence.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingNotifiedSector"
+            ><i class="bi bi-building"></i>Classificação da Ocorrência</label
+          >
+        </div>
+      </div>
+
+
+      <!-- Classificação do Dano -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingNotifiedSector"
+            aria-label="Classificação do Dano"
+          >
+            {% for sector in notified_sectors %}
+            <option value="{{ sector.id }}">{{ sector.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingNotifiedSector"
+            ><i class="bi bi-building"></i>Classificação do Dano</label
+          >
+        </div>
+      </div>
+      <!-- Botões de ação -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-send"></i> Enviar Notificação
+        </button>
+        <button type="reset" class="btn btn-secondary">
+          <i class="bi bi-eraser"></i> Limpar
+        </button>
+      </div>
+    </form>
+    <!-- End floating Labels Form -->
+  </div>
+</div>
+{% endblock content %}
