@@ -1,0 +1,72 @@
+      <!-- Data da Ocorrência -->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingOccurrenceDate"
+            placeholder="Data da Ocorrência"
+            required
+          />
+          <label for="floatingOccurrenceDate"
+            ><i class="bi bi-calendar-event"></i> Data da Ocorrência</label
+          >
+        </div>
+      </div>
+
+      <!-- Hora da Ocorrência -->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input
+            type="time"
+            class="form-control"
+            id="floatingOccurrenceTime"
+            placeholder="Hora da Ocorrência"
+            required
+          />
+          <label for="floatingOccurrenceTime"
+            ><i class="bi bi-clock"></i> Hora da Ocorrência</label
+          >
+        </div>
+      </div>
+
+      <!-- Seção de Setores Envolvidos -->
+      <hr />
+
+      <!-- Setor Notificante -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingReportingSector"
+            aria-label="Setor Notificante"
+            required
+          >
+            {% for sector in reporting_sectors %}
+            <option value="{{ sector.id }}">{{ sector.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingReportingSector"
+            ><i class="bi bi-building"></i> Setor Notificante</label
+          >
+        </div>
+      </div>
+
+      <!-- Setor Notificado -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="floatingNotifiedSector"
+            aria-label="Setor Notificado"
+            required
+          >
+            {% for sector in notified_sectors %}
+            <option value="{{ sector.id }}">{{ sector.name }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingNotifiedSector"
+            ><i class="bi bi-building"></i> Setor Notificado</label
+          >
+        </div>
+      </div>
